@@ -5,7 +5,7 @@ function plotSpline(X, Y)
     end
 
     
-    S = splineG(X, Y);
+%     S = splineG(X, Y);
 
 
     % clear plot and hold
@@ -13,14 +13,24 @@ function plotSpline(X, Y)
     hold on
 
 
-    for i = 1:length(X)-1
-        x = 0:0.001:X(i+1)-X(i);
-        y = polyval(S(4*(i-1)+1:4*i), x);
-        plot(x+X(i), y, "b")
-    end
+%     for i = 1:length(X)-1
+%         x = 0:0.001:X(i+1)-X(i);
+%         y = polyval(S(4*(i-1)+1:4*i), x);
+%         plot(x+X(i), y, "b")
+%     end
+
 
 
     plot(X(1):0.001:X(length(X)), spline(X, Y, X(1):0.001:X(length(X))), "r")
+    
+    
+    S = spline0(X, Y);
+
+    for i = 1:length(X)-1
+        x = 0:0.001:X(i+1)-X(i);
+        y = polyval(S(4*(i-1)+1:4*i), x);
+        plot(x+X(i), y, "k")
+    end
 
 
     plot(X, Y, "o")
